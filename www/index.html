@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="theme-color" content="#7fd8ff" />
+<title>奶蛙跑酷 · Milky Frog Run</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div id="app">
+
+  <!-- ===== 主菜单 ===== -->
+  <section id="menu" class="screen active">
+    <div class="menu-inner">
+      <h1 class="title">奶蛙跑酷</h1>
+      <p class="subtitle">Milky Frog Run · 双人联网竞技</p>
+
+      <div class="frog-preview">
+        <canvas id="previewCanvas" width="220" height="220"></canvas>
+      </div>
+
+      <div class="buttons">
+        <button id="btnSolo" class="btn primary">单机练习</button>
+        <button id="btnOnline" class="btn success">联网对战</button>
+        <button id="btnSettings" class="btn ghost">服务器设置</button>
+      </div>
+      <p class="hint" id="serverHint"></p>
+    </div>
+  </section>
+
+  <!-- ===== 联机匹配 ===== -->
+  <section id="online" class="screen">
+    <div class="menu-inner">
+      <h1 class="title small">联网对战</h1>
+      <label class="field-label">房间号（两人输入相同即可）</label>
+      <input id="roomInput" class="field" type="text" inputmode="numeric" maxlength="6" placeholder="例如 8888" />
+      <label class="field-label">你的昵称</label>
+      <input id="nameInput" class="field" type="text" maxlength="8" placeholder="奶蛙一号" />
+      <div class="buttons">
+        <button id="btnJoin" class="btn success">进入房间</button>
+        <button id="btnRandom" class="btn primary">随机匹配</button>
+        <button id="btnBack1" class="btn ghost">返回</button>
+      </div>
+      <p class="hint" id="matchHint">等待连接…</p>
+    </div>
+  </section>
+
+  <!-- ===== 服务器设置 ===== -->
+  <section id="settings" class="screen">
+    <div class="menu-inner">
+      <h1 class="title small">服务器设置</h1>
+      <label class="field-label">对战服务器地址 (wss://)</label>
+      <input id="serverInput" class="field" type="text" placeholder="wss://your-app.onrender.com" />
+      <p class="hint small">部署方法见项目 README。局域网测试可填 ws://192.168.x.x:3000</p>
+      <div class="buttons">
+        <button id="btnSave" class="btn success">保存</button>
+        <button id="btnBack2" class="btn ghost">返回</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 游戏画布 ===== -->
+  <section id="game" class="screen">
+    <canvas id="gameCanvas"></canvas>
+
+    <!-- 顶部 HUD -->
+    <div id="hud">
+      <div class="hud-item">
+        <span class="hud-name" id="hudName1">你</span>
+        <span class="hud-score" id="hudScore1">0</span>
+      </div>
+      <div class="hud-item right">
+        <span class="hud-name" id="hudName2">对手</span>
+        <span class="hud-score" id="hudScore2">0</span>
+      </div>
+    </div>
+    <div id="netBadge" class="net-badge hidden">已连接</div>
+
+    <!-- 触屏操作提示 -->
+    <div id="touchLayer">
+      <div class="touch-zone zone-left"><span>◀</span></div>
+      <div class="touch-zone zone-up"><span>▲ 跳</span></div>
+      <div class="touch-zone zone-right"><span>▶</span></div>
+      <div class="touch-zone zone-down"><span>▼ 滑</span></div>
+    </div>
+
+    <!-- 开始倒计时 -->
+    <div id="countdown" class="countdown hidden"></div>
+
+    <!-- 结算 -->
+    <div id="result" class="result hidden">
+      <div class="result-card">
+        <h2 id="resultTitle">本局结束</h2>
+        <div class="result-rows">
+          <div class="result-row"><span id="rName1">你</span><b id="rScore1">0</b></div>
+          <div class="result-row"><span id="rName2">对手</span><b id="rScore2">0</b></div>
+        </div>
+        <div class="buttons">
+          <button id="btnAgain" class="btn success">再来一局</button>
+          <button id="btnQuit" class="btn ghost">回到菜单</button>
+        </div>
+      </div>
+    </div>
+
+    <button id="btnPause" class="pause-btn">II</button>
+  </section>
+
+</div>
+
+<script src="frog.js"></script>
+<script src="net.js"></script>
+<script src="engine.js"></script>
+<script src="ui.js"></script>
+</body>
+</html>

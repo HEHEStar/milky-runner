@@ -1,0 +1,25 @@
+# 依赖
+node_modules/
+server/node_modules/
+
+# 构建产物
+android/
+dist/
+build/
+
+# 日志
+*.log
+npm-debug.log*
+
+# 环境变量 / 密钥
+.env
+.env.local
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
